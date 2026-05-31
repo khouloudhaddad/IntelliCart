@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 
 use Database\Seeders\CategorySeeder;
 use Database\Seeders\ProductSeeder;
+use Database\Seeders\ProductImageSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,5 +28,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CategorySeeder::class);
         $this->call(ProductSeeder::class);
+        $this->call(ProductImageSeeder::class);
     }
 }

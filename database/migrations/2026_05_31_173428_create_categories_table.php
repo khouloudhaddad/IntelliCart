@@ -17,7 +17,7 @@ return new class extends Migration
             //Parent category (self-referencing)
             $table->foreignId("parent_id")
             ->nullable()
-            ->constrained("categories")
+            ->constrained('categories')
             ->nullOnDelete()
             ->index();
 

@@ -13,6 +13,40 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId("category_id")
+                ->constrained('categories')
+                ->cascadeOnDelete();
+
+            $table->string("name");
+            $table->string("slug")->unique();
+            $table->text("description")->nullable();
+            $table->text("short_description")->nullable();
+
+            // Pricing
+            $table->decimal('price', 10, 2);
+            $table->decimal('sale_price', 10, 2);
+
+            // Inventory
+            $table->string('sku')->unique();
+            $table->integer('stock')->default(0);
+
+            $table->string("image")->nullable();
+
+            // Visibility
+            $table->boolean('featured')->default(0);
+            $table->boolean('status')->default(1);
+
+            // Analytics (Future AI usage)
+            $table->integer('views')->default(0);
+            $table->integer('sales_count')->default(0);
+
+            // SEO fields
+            $table->string("meta_title")->nullable();
+            $table->text("meta_description")->nullable();
+            $table->string("meta_keywords")->nullable();
+
+
             $table->timestamps();
         });
     }
