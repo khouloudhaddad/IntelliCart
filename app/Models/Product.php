@@ -32,6 +32,14 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    public function images(){
+        return $this->hasMany(ProductImage::class, 'product_id');
+    }
+
+    public function variants(){
+        return $this->hasMany(ProductVariant::class);
+    }
+
     protected static function boot(){
         parent::boot();
         static::creating(function($product){
