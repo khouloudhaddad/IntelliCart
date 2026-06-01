@@ -44,6 +44,10 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function attributeValues(){
+        return $this->belongsToMany(AttributeValue::class);
+    }
+
     protected static function boot(){
         parent::boot();
         static::creating(function($product){
