@@ -40,6 +40,10 @@ class Product extends Model
         return $this->hasMany(ProductVariant::class);
     }
 
+    public function brand(){
+        return $this->belongsTo(Brand::class);
+    }
+
     protected static function boot(){
         parent::boot();
         static::creating(function($product){

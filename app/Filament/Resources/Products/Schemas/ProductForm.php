@@ -36,6 +36,11 @@ class ProductForm
                                 ->options(CategoryForm::getCategoryOptions())
                                 ->searchable()
                                 ->nullable(),
+                            Select::make('brand_id')
+                                ->label('Brand')
+                                ->relationship('brand', 'name')
+                                ->searchable()
+                                ->preload(),
                             TextInput::make('sku')
                                 ->label('SKU')
                                 ->required(),

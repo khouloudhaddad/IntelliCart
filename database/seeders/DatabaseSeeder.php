@@ -10,6 +10,7 @@ use Database\Seeders\CategorySeeder;
 use Database\Seeders\ProductSeeder;
 use Database\Seeders\ProductImageSeeder;
 use Database\Seeders\ProductVariantSeeder;
+use Database\Seeders\BrandSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,5 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductSeeder::class);
         $this->call(ProductImageSeeder::class);
         $this->call(ProductVariantSeeder::class);
+        $this->call(BrandSeeder::class);
     }
 }
