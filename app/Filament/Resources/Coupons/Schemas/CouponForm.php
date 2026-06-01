@@ -14,10 +14,48 @@ class CouponForm
     {
         return $schema
             ->components([
+
+                Select::make('code_type')
+                    ->label('Coupon Mode')
+                    ->options([
+                        'manual' => 'Manual',
+                        'Auto' => 'Automatic'
+                    ])
+                    ->default('manual')
+                    ->live(),
+
+                // Manual Code
                 TextInput::make('code')
                     ->label('Coupon Code')
-                    ->required()
-                    ->unique(ignoreRecord: true),
+                    ->required(fn($get) => $get('code_type') === 'manual')
+                    ->unique(ignoreRecord: true)
+                    ->visible(fn($get) => $get('code_type') === 'manual'),
+
+                // Auto generated Code
+                TextInput::make('code')
+                    ->label('Generated Code')
+                    ->disabled()
+                    ->dehydrated()
+                    ->visible(fn($get) => $get('code_type') === 'auto')
+                    ->default(function ($record) {
+                        // Do not regenerate on Edit
+                        return $record?->code ?? strtoupper(\Str::random(8));
+                    }),
+                // Catgeories multi select
+                Select::make('categories')
+                    ->label('Categories (Optional)')
+                    ->multiple()
+                    ->relationship('categories', 'name')
+                    ->preload()
+                    ->searchable(),
+
+                // Brands multi select
+                Select::make('brands')
+                    ->label('Brands (Optional)')
+                    ->multiple()
+                    ->relationship('brands', 'name')
+                    ->preload()
+                    ->searchable(),
 
                 Select::make('type')
                     ->label('Coupon Type')

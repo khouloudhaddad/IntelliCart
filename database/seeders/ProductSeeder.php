@@ -101,17 +101,17 @@ class ProductSeeder extends Seeder
                 'description' => "High quality Android smartphone model $i",
                 'price' => rand(15000, 70000),
                 'sale_price' => rand(14000, 65000),
-                'sku' => "APM-$i-".rand(100, 999),
+                'sku' => "APM-$i-" . rand(100, 999),
                 'stock' => rand(10, 100),
                 'featured' => rand(0, 1),
                 'meta_title' => "Android Phone $i",
                 'meta_description' => "Best Android phone model $i",
                 'meta_keywords' => 'android, smartphone',
             ];
+        }
 
-            foreach ($products as $product) {
-                Product::create($product);
-            }
+        foreach ($products as $product) {
+            Product::create($product);
         }
     }
 }

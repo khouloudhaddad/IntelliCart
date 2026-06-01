@@ -15,8 +15,15 @@ return new class extends Migration
             $table->id();
 
             $table->string('code')->unique();
+            // Manual or automatic
+            $table->enum('code_type', ['manual', 'auto']);
+
+            // Discount Type
             $table->enum('type', ['fixed', 'percentage']);
+
+            // Discount value
             $table->decimal('value', 20, 2);
+            
             $table->decimal('min_cart_value', 10, 2)->nullable();
 
             $table->integer('usage_limit')->nullable();
